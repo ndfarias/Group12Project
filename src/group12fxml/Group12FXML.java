@@ -1,5 +1,5 @@
 
-package nicolfariasfxml;
+package group12fxml;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  *
  * @author Nicol Farias
  */
-public class NicolFariasFXML extends Application {
+public class Group12FXML extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {

@@ -28,8 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Accountmodel.findByAccountname", query = "SELECT a FROM Accountmodel a WHERE a.accountname = :accountname")
     , @NamedQuery(name = "Accountmodel.findByAccountemail", query = "SELECT a FROM Accountmodel a WHERE a.accountemail = :accountemail")
     , @NamedQuery(name = "Accountmodel.findByIsmember", query = "SELECT a FROM Accountmodel a WHERE a.ismember = :ismember")
-    , @NamedQuery(name = "Accountmodel.findByNameAndEmail", query = "SELECT a FROM Accountmodel a WHERE a.accountname = :accountname "
-            + "and a.accountemail = :accountemail")
+    , @NamedQuery(name = "Accountmodel.findByAccountpassword", query = "SELECT a FROM Accountmodel a WHERE a.accountpassword = :accountpassword")
+    , @NamedQuery(name = "Accountmodel.findByEmailAndPassword", query = "SELECT a FROM Accountmodel a WHERE a.accountemail = :accountemail "
+           + "and a.accountpassword = :accountpassword")
     , @NamedQuery(name= "Accountmodel.findByAccountEmailContaining", query = "SELECT a FROM Accountmodel a WHERE a.accountemail LIKE CONCAT('%', :word, '%')") //with help from https://stackoverflow.com/questions/44373846/using-select-query-with-like-operator-and-parameters-in-java
     })
 
@@ -49,6 +50,10 @@ public class Accountmodel implements Serializable {
     @Basic(optional = false)
     @Column(name = "ISMEMBER")
     private Boolean ismember;
+    @Basic(optional = false)
+    @Column(name = "ACCOUNTPASSWORD")
+    private String accountpassword;
+    
 
     public Accountmodel() {
     }
@@ -57,11 +62,12 @@ public class Accountmodel implements Serializable {
         this.accountid = accountid;
     }
 
-    public Accountmodel(Integer accountid, String accountname, String accountemail, Boolean ismember) {
+    public Accountmodel(Integer accountid, String accountname, String accountemail, Boolean ismember, String accountpassword) {
         this.accountid = accountid;
         this.accountname = accountname;
         this.accountemail = accountemail;
         this.ismember = ismember;
+        this.accountpassword = accountpassword;
     }
 
     public Integer getAccountid() {
@@ -94,6 +100,14 @@ public class Accountmodel implements Serializable {
 
     public void setIsmember(Boolean ismember) {
         this.ismember = ismember;
+    }
+    
+    public String getAccountpassword() {
+        return accountpassword;
+    }
+    
+    public void setAccountpassword(String accountpassword) {
+        this.accountpassword = accountpassword;
     }
 
     @Override

@@ -38,17 +38,17 @@ import javafx.scene.Parent;
  *
  * @author Nicol Farias
  */
-public class FXMLDocumentController implements Initializable {
+public class LoginController implements Initializable {
 
     @FXML
     private Label label;
 
     //action for "Click Me!" button
-    @FXML
+    /*@FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
-    }
+    }*/
 
     //the following code snippet is from the demo project
     // Database manager
@@ -59,12 +59,13 @@ public class FXMLDocumentController implements Initializable {
         // loading data from database
         manager = (EntityManager) Persistence.createEntityManagerFactory("NicolFariasFXMLPU").createEntityManager();
         
-        accountid.setCellValueFactory(new PropertyValueFactory<>("accountid"));
+        /*accountid.setCellValueFactory(new PropertyValueFactory<>("accountid"));
         accountname.setCellValueFactory(new PropertyValueFactory<>("accountname"));
         accountemail.setCellValueFactory(new PropertyValueFactory<>("accountemail"));
         ismember.setCellValueFactory(new PropertyValueFactory<>("ismember"));
+        accountpassword.setCellValueFactory(new PropertyValueFactory<>("accountpassword"));
 
-        accountModel.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        accountModel.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);*/
     }
 
     //the following code is from scene builder skeleton
@@ -102,9 +103,15 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private TableColumn<Accountmodel, Boolean> ismember;
+    
+    @FXML
+    private TableColumn<Accountmodel, String> accountpassword;
 
     @FXML
     private TextField emailField;
+    
+    @FXML 
+    private TextField passwordField;
 
     @FXML
     private Button searchButton;
@@ -134,6 +141,9 @@ public class FXMLDocumentController implements Initializable {
 
         System.out.println("Enter Account Email:");
         String accountEmail = scn.next();
+        
+        System.out.println("Enter Password:");
+        String accountPassword = scn.next();
 
         System.out.println("Enter Whether or not the Account is a Member:");
         Boolean isMember = scn.nextBoolean();
@@ -145,6 +155,7 @@ public class FXMLDocumentController implements Initializable {
         account.setAccountname(accountName);
         account.setAccountemail(accountEmail);
         account.setIsmember(isMember);
+        account.setAccountpassword(accountPassword);
 
         // save this account to the database        
         create(account);
@@ -184,14 +195,16 @@ public class FXMLDocumentController implements Initializable {
 
         System.out.println("Enter Account ID:");
         int accountId = scn.nextInt();
+        scn.nextLine();
 
         System.out.println("Enter Account Name:");
         String accountName = scn.nextLine();
-        scn.next();
 
         System.out.println("Enter Account Email:");
         String accountEmail = scn.next();
-        scn.next();
+        
+        System.out.println("Enter Account Password:");
+        String accountPassword = scn.next();
 
         System.out.println("Enter whether or not Account is a Member:");
         Boolean isMember = scn.nextBoolean();
@@ -202,6 +215,7 @@ public class FXMLDocumentController implements Initializable {
         account.setAccountname(accountName);
         account.setAccountemail(accountEmail);
         account.setIsmember(isMember);
+        account.setAccountpassword(accountPassword);
 
         // save account to database       
         update(account);
@@ -209,18 +223,18 @@ public class FXMLDocumentController implements Initializable {
 
     //method to read the accounts based on name and email
     @FXML
-    void readByNameAndEmail(ActionEvent e) {
+    void readByEmailAndPassword(ActionEvent e) {
         Scanner scn = new Scanner(System.in);
-
-        System.out.println("Enter Account Name:");
-        String accountName = scn.nextLine();
-        //scn.next();
 
         System.out.println("Enter Account Email:");
         String accountEmail = scn.nextLine();
         //scn.next();
 
-        List<Accountmodel> accounts = readByNameEmail(accountName, accountEmail);
+        System.out.println("Enter Account Password:");
+        String accountPassword = scn.nextLine();
+        //scn.next();
+
+        List<Accountmodel> accounts = readByEmailPassword(accountEmail, accountPassword);
     }
 
     @FXML
@@ -261,7 +275,7 @@ public class FXMLDocumentController implements Initializable {
         List<Accountmodel> accounts = query.getResultList();
 
         for (Accountmodel a : accounts) {
-            System.out.println(a.getAccountid() + " " + a.getAccountname() + " " + a.getAccountemail() + " " + a.getIsmember());
+            System.out.println(a.getAccountid() + " " + a.getAccountname() + " " + a.getAccountemail() + " " + a.getIsmember()+ " " + a.getAccountpassword());
         }
 
         return accounts;
@@ -280,6 +294,7 @@ public class FXMLDocumentController implements Initializable {
                 existingAccount.setAccountname(model.getAccountname());
                 existingAccount.setAccountemail(model.getAccountemail());
                 existingAccount.setIsmember(model.getIsmember());
+                existingAccount.setAccountpassword(model.getAccountpassword());
 
                 manager.getTransaction().commit();
             }
@@ -308,15 +323,15 @@ public class FXMLDocumentController implements Initializable {
     }
 
     //this method finds an account based on both name and email
-    public List<Accountmodel> readByNameEmail(String n, String e) {
-        Query q = manager.createNamedQuery("Accountmodel.findByNameAndEmail");
+    public List<Accountmodel> readByEmailPassword(String e, String p) {
+        Query q = manager.createNamedQuery("Accountmodel.findByEmailAndPassword");
 
-        q.setParameter("accountname", n);
         q.setParameter("accountemail", e);
+        q.setParameter("accountpassword", p);
 
         List<Accountmodel> accounts = q.getResultList();
         for (Accountmodel a : accounts) {
-            System.out.println(a.getAccountid() + " " + a.getAccountname() + " " + a.getAccountemail() + " " + a.getIsmember());
+            System.out.println(a.getAccountid() + " " + a.getAccountname() + " " + a.getAccountemail() + " " + a.getIsmember() + " " + a.getAccountpassword());
         }
         return accounts;
     }
@@ -330,7 +345,7 @@ public class FXMLDocumentController implements Initializable {
         List<Accountmodel> accounts = q.getResultList();
 
         for (Accountmodel a : accounts) {
-            System.out.println(a.getAccountid() + " " + a.getAccountname() + " " + a.getAccountemail() + " " + a.getIsmember());
+            System.out.println(a.getAccountid() + " " + a.getAccountname() + " " + a.getAccountemail() + " " + a.getIsmember() + " " + a.getAccountpassword());
         }
         return accounts;
     }
@@ -343,7 +358,7 @@ public class FXMLDocumentController implements Initializable {
 
         List<Accountmodel> accounts = q.getResultList();
         for (Accountmodel a : accounts) {
-            System.out.println(a.getAccountid() + " " + a.getAccountname() + " " + a.getAccountemail() + " " + a.getIsmember());
+            System.out.println(a.getAccountid() + " " + a.getAccountname() + " " + a.getAccountemail() + " " + a.getIsmember()+ " " + a.getAccountpassword());
         }
         return accounts;
     }
@@ -371,23 +386,40 @@ public class FXMLDocumentController implements Initializable {
     
     //action for advanced search button. searches for account based on any words in the email
     @FXML
-    void advancedAccount(ActionEvent event) {
+    void advancedAccount(ActionEvent event) throws IOException {
         System.out.println("Clicked");
        
         String email = emailField.getText();
+        String password = passwordField.getText();
 
-        List<Accountmodel> accounts = readByEmailContains(email);
+        List<Accountmodel> accounts = readByEmailPassword(email, password);
 
         //alert pops up if search comes up blank
         if (accounts == null || accounts.isEmpty()) {
 
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Information");
-            alert.setHeaderText("Error");
-            alert.setContentText("No account");
+            alert.setTitle("Error");
+            alert.setHeaderText("Wrong Username or Password");
+            alert.setContentText("Account Not Found");
             alert.showAndWait();
         } else {
-            setTableData(accounts);
+            Accountmodel selectAccount = accounts.get(0);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardView.fxml"));
+
+            Parent detailModelView = loader.load();
+            Scene tableView = new Scene(detailModelView);
+            DetailModelController detailControlled = loader.getController();
+
+            detailControlled.initData(selectAccount);
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+            detailControlled.setPreviousScene(currentScene);
+        
+            Stage stage = (Stage) currentScene.getWindow();
+
+            stage.setScene(tableView);
+            stage.show();
         }
 
     }
@@ -399,7 +431,7 @@ public class FXMLDocumentController implements Initializable {
         
         Accountmodel selectAccount = accountModel.getSelectionModel().getSelectedItem();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetailedModelView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardView.fxml"));
 
         Parent detailModelView = loader.load();
         Scene tableView = new Scene(detailModelView);
