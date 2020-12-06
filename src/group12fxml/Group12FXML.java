@@ -15,7 +15,7 @@ public class Group12FXML extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/FXMLDocument.fxml")); //line changed based on demo project
+        Parent root = FXMLLoader.load(getClass().getResource("/view/LoginView.fxml")); //line changed based on demo project
         
         Scene scene = new Scene(root);
         

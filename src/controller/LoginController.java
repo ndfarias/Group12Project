@@ -453,7 +453,7 @@ public class LoginController implements Initializable {
     
         Accountmodel selectAccount = accountModel.getSelectionModel().getSelectedItem();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetailedModelView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardView.fxml"));
 
         Parent detailModelView = loader.load();
         Scene tableView = new Scene(detailModelView);

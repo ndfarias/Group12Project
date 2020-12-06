@@ -90,11 +90,11 @@ public class DetailModelController {
 
     @FXML
     void initialize() {
-        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'DetailedModelView.fxml'.";
-        assert labelID != null : "fx:id=\"labelID\" was not injected: check your FXML file 'DetailedModelView.fxml'.";
-        assert labelName != null : "fx:id=\"labelName\" was not injected: check your FXML file 'DetailedModelView.fxml'.";
-        assert labelEmail != null : "fx:id=\"labelEmail\" was not injected: check your FXML file 'DetailedModelView.fxml'.";
-        assert labelMember != null : "fx:id=\"labelMember\" was not injected: check your FXML file 'DetailedModelView.fxml'.";
+        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert labelID != null : "fx:id=\"labelID\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert labelName != null : "fx:id=\"labelName\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert labelEmail != null : "fx:id=\"labelEmail\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert labelMember != null : "fx:id=\"labelMember\" was not injected: check your FXML file 'DashboardView.fxml'.";
         
         backButton.setDisable(true);
     }
