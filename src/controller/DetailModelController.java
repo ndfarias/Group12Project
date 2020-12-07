@@ -28,19 +28,16 @@ public class DetailModelController {
     private Button backButton; 
 
     @FXML
-    private Label labelID; 
+    private Button transportButton;
 
-    @FXML 
-    private Label labelName; 
-    
     @FXML
-    private Label labelEmail;
-    
-    @FXML
-    private Label labelMember;
+    private Button ticketButton;
 
-    @FXML 
-    private ImageView image; 
+    @FXML
+    private ImageView ticketImage;
+
+    @FXML
+    private ImageView transportImage;
 
     // this back button action serves to go back to the previous scene 
     @FXML
@@ -72,16 +69,20 @@ public class DetailModelController {
             
         }
         
-        selectedModel = model;
+        /**selectedModel = model;
         labelID.setText(model.getAccountid().toString());
         labelName.setText(model.getAccountname());
         labelEmail.setText(model.getAccountemail());
-        labelMember.setText(member);
+        labelMember.setText(member);*/
 
         try {
-            String imageName = "/resource/images/" + model.getAccountname() + ".png";
-            Image profile = new Image(getClass().getResourceAsStream(imageName));
-            image.setImage(profile);
+            String busImageName = "/resource/images/bus icon.png";
+            Image bus = new Image(getClass().getResourceAsStream(busImageName));
+            transportImage.setImage(bus);
+            
+            String ticketImageName = "/resource/images/ticket icon.png";
+            Image ticket = new Image(getClass().getResourceAsStream(ticketImageName));
+            ticketImage.setImage(ticket);
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -91,10 +92,10 @@ public class DetailModelController {
     @FXML
     void initialize() {
         assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert labelID != null : "fx:id=\"labelID\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert labelName != null : "fx:id=\"labelName\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert labelEmail != null : "fx:id=\"labelEmail\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert labelMember != null : "fx:id=\"labelMember\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert transportButton!= null : "fx:id=\"labelID\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert ticketButton != null : "fx:id=\"labelName\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert ticketImage != null : "fx:id=\"labelEmail\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert transportImage != null : "fx:id=\"labelMember\" was not injected: check your FXML file 'DashboardView.fxml'.";
         
         backButton.setDisable(true);
     }

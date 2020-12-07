@@ -460,8 +460,8 @@ public class LoginController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardView.fxml"));
 
-        Parent detailModelView = loader.load();
-        Scene tableView = new Scene(detailModelView);
+        Parent dashboardView = loader.load();
+        Scene tableView = new Scene(dashboardView);
         DetailModelController detailControlled = loader.getController();
 
         detailControlled.initData(selectAccount);
@@ -471,8 +471,8 @@ public class LoginController implements Initializable {
         
         Stage stage = (Stage) currentScene.getWindow();
 
-        stage.setScene(tableView);
-        stage.show();
+       stage.setScene(tableView);
+       stage.show();
     }
     
     @FXML
