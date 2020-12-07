@@ -7,13 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="359.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDocumentController"> 
+<AnchorPane id="AnchorPane" prefHeight="359.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController"> 
     <children>
         <Label layoutX="97.0" layoutY="168.0" minHeight="16" minWidth="69" text="Email:">
          <font>
             <Font name="Georgia Italic" size="15.0" />
          </font></Label>
-      <Button fx:id="buttonReadAccounts" layoutX="299.0" layoutY="275.0" mnemonicParsing="false" onAction="#readAccounts" text="Read" />
       <Label layoutX="129.0" layoutY="115.0" text="Log In" textFill="#17109a">
          <font>
             <Font name="Showcard Gothic" size="24.0" />
@@ -22,7 +21,7 @@
       <TextField fx:id="emailField" layoutX="174.0" layoutY="162.0" />
       <Button fx:id="advancedButton" layoutX="212.0" layoutY="276.0" mnemonicParsing="false" onAction="#advancedAccount" text="Log In">
          <font>
-            <Font name="Georgia Italic" size="15.0" />
+            <Font name="Georgia Bold" size="15.0" />
          </font>
          <effect>
             <InnerShadow height="15.0" radius="7.0" width="15.0" />
@@ -38,6 +37,14 @@
             <Font name="Georgia Italic" size="15.0" />
          </font>
       </Label>
+      <Button fx:id="signUpButton" layoutX="291.0" layoutY="276.0" mnemonicParsing="false" onAction="#signUpScreen" text="Sign Up">
+         <font>
+            <Font name="Georgia Bold" size="15.0" />
+         </font>
+         <effect>
+            <InnerShadow height="15.0" radius="7.0" width="15.0" />
+         </effect>
+      </Button>
     </children>
    <effect>
       <InnerShadow choke="0.33" color="#17109a" height="143.06" radius="66.17" width="123.62" />
