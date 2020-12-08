@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #17109a;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetailModelController">
+   <children>
+      <Button fx:id="backButton" layoutX="22.0" layoutY="24.0" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: white;" text="Back">
+         <font>
+            <Font name="Georgia Bold" size="15.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <Label layoutX="162.0" layoutY="11.0" prefHeight="56.0" prefWidth="276.0" text="Dashboard" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Georgia Bold" size="48.0" />
+         </font>
+         <effect>
+            <DropShadow height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </Label>
+      <Button fx:id="transportButton" layoutX="91.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: white;" text="Available Transport">
+         <font>
+            <Font name="Georgia Bold" size="15.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <Button fx:id="ticketButton" layoutX="372.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: white;" text="Tickets">
+         <font>
+            <Font name="Georgia Bold" size="15.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <ImageView fx:id="ticketImage" fitHeight="150.0" fitWidth="132.0" layoutX="372.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Pictures/Saved%20Pictures/ticket%20icon.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="transportImage" fitHeight="150.0" fitWidth="200.0" layoutX="91.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Pictures/Saved%20Pictures/bus%20icon.jpg" />
+         </image>
+      </ImageView>
+   </children>
+   <effect>
+      <InnerShadow height="76.98" radius="41.290000000000006" width="90.18" />
+   </effect>
+</AnchorPane>
