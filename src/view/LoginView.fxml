@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,7 +27,6 @@
          <effect>
             <InnerShadow height="15.0" radius="7.0" width="15.0" />
          </effect></Button>
-      <TextField fx:id="passwordField" layoutX="174.0" layoutY="220.0" />
       <Label layoutX="116.0" layoutY="14.0" prefHeight="76.0" prefWidth="252.0" text="OnTheGO" textFill="#17109a">
          <font>
             <Font name="Jokerman" size="48.0" />
@@ -45,6 +45,7 @@
             <InnerShadow height="15.0" radius="7.0" width="15.0" />
          </effect>
       </Button>
+      <PasswordField fx:id="passwordField" layoutX="174.0" layoutY="220.0" />
     </children>
    <effect>
       <InnerShadow choke="0.33" color="#17109a" height="143.06" radius="66.17" width="123.62" />
