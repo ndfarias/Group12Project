@@ -119,9 +119,14 @@ public class LoginController implements Initializable {
     @FXML
     private Button advancedButton;
     
+    @FXML
     private Button showDetailsButton;
     
+    @FXML
     private Button showDetailsInPlaceButton;
+    
+    @FXML
+    private Button signUpButton;
 
     private ObservableList<Accountmodel> accountData;
 
@@ -170,7 +175,6 @@ public class LoginController implements Initializable {
         int accountId = scn.nextInt();
 
         Query q = manager.createNamedQuery("Accountmodel.findByAccountid");
-
         q.setParameter("accountid", accountId);
         Accountmodel a = (Accountmodel) q.getSingleResult();
 
@@ -407,8 +411,8 @@ public class LoginController implements Initializable {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardView.fxml"));
 
-            Parent detailModelView = loader.load();
-            Scene tableView = new Scene(detailModelView);
+            Parent DashboardView = loader.load();
+            Scene tableView = new Scene(DashboardView);
             DetailModelController detailControlled = loader.getController();
 
             detailControlled.initData(selectAccount);
@@ -468,6 +472,31 @@ public class LoginController implements Initializable {
 
        stage.setScene(tableView);
        stage.show();
+    }
+    
+    @FXML
+    void signUpScreen(ActionEvent event) throws IOException {
+        System.out.println("Clicked");
+
+    
+        //Accountmodel selectAccount = accountModel.getSelectionModel().getSelectedItem();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SignUpView.fxml"));
+
+        Parent detailModelView = loader.load();
+        Scene signUpView = new Scene(detailModelView);
+        SignUpController detailControlled = loader.getController();
+
+        //detailControlled.initData(selectAccount);
+
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        detailControlled.setPreviousScene(currentScene);
+        
+        Stage stage = (Stage) currentScene.getWindow();
+
+        stage.setScene(signUpView);
+        stage.show();
+        
     }
 
     //data to table

@@ -3,11 +3,14 @@
 
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,16 +31,16 @@ public class DetailModelController {
     private Button backButton; 
 
     @FXML
-    private Button TransportButton;
+    private Button transportButton;
 
     @FXML
-    private Button TicketButton;
+    private Button ticketButton;
 
     @FXML
-    private ImageView TicketImage;
+    private ImageView ticketImage;
 
     @FXML
-    private ImageView TransportImage;
+    private ImageView transportImage;
 
     // this back button action serves to go back to the previous scene 
     @FXML
@@ -58,6 +61,23 @@ public class DetailModelController {
         backButton.setDisable(false);
 
     }
+    
+    @FXML 
+    void ticketButton(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TicketView.fxml"));
+
+            Parent TicketView = loader.load();
+            Scene tableView = new Scene(TicketView);
+            TicketViewController detailControlled = loader.getController();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+            detailControlled.setPreviousScene(currentScene);
+        
+            Stage stage = (Stage) currentScene.getWindow();
+
+            stage.setScene(tableView);
+            stage.show();
+    }
 
     public void initData(Accountmodel model) {
         String member;
@@ -73,27 +93,31 @@ public class DetailModelController {
         labelID.setText(model.getAccountid().toString());
         labelName.setText(model.getAccountname());
         labelEmail.setText(model.getAccountemail());
-        labelMember.setText(member);
+        labelMember.setText(member);*/
 
         try {
-            String imageName = "/resource/images/" + model.getAccountname() + ".png";
-            Image profile = new Image(getClass().getResourceAsStream(imageName));
-            image.setImage(profile);
+            String busImageName = "/resource/images/bus icon.png";
+            Image bus = new Image(getClass().getResourceAsStream(busImageName));
+            transportImage.setImage(bus);
+            
+            String ticketImageName = "/resource/images/ticket icon.png";
+            Image ticket = new Image(getClass().getResourceAsStream(ticketImageName));
+            ticketImage.setImage(ticket);
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        */
     }
 
     @FXML
     void initialize() {
         assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert TransportButton!= null : "fx:id=\"labelID\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert TicketButton != null : "fx:id=\"labelName\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert TicketImage != null : "fx:id=\"labelEmail\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert TransportImage != null : "fx:id=\"labelMember\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert transportButton!= null : "fx:id=\"labelID\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert ticketButton != null : "fx:id=\"labelName\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert ticketImage != null : "fx:id=\"labelEmail\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert transportImage != null : "fx:id=\"labelMember\" was not injected: check your FXML file 'DashboardView.fxml'.";
         
         backButton.setDisable(true);
     }
+    
 }

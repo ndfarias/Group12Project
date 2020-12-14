@@ -5,6 +5,9 @@
  */
 package controller;
 
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,6 +20,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import model.TicketModel;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TableColumn;
 
 /**
  *
@@ -25,7 +31,7 @@ import javafx.stage.Stage;
 public class TicketViewController {
 
     @FXML
-    private TableView<?> ticketTable;
+    private TableView<TicketModel> TicketModel;
 
     @FXML
     private Label ticketLabel;
@@ -35,6 +41,23 @@ public class TicketViewController {
 
     @FXML
     private Button backButton;
+    
+    private ObservableList<TicketModel> ticketData;
+    
+     @FXML
+    private TableView<TicketModel> accountModel;
+
+    @FXML
+    private TableColumn<TicketModel, Integer> ticketId;
+
+    @FXML
+    private TableColumn<TicketModel, String> ticketName;
+
+    @FXML
+    private TableColumn<TicketModel, Integer> referenceCode;
+    
+    @FXML
+    private TableColumn<TicketModel, Double> ticketPrice;
 
     @FXML
     void backButton(ActionEvent event) {
@@ -48,8 +71,27 @@ public class TicketViewController {
     Scene previousScene;
 
     @FXML
-    void nextView(ActionEvent event) {
+    void purchaseButton(ActionEvent event) {
+        
+        
 
     }
+    
+    public void setPreviousScene(Scene scene) {
+    previousScene = scene;
+    backButton.setDisable(false);
+
+    }
+    
+        //data to table
+    public void setTableData(List<TicketModel> ticketList) {
+        ticketData = FXCollections.observableArrayList();
+
+        ticketList.forEach(a -> { ticketData.add(a);});
+        
+        TicketModel.setItems(ticketData);
+        TicketModel.refresh();
+    }
+
 }
     
