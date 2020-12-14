@@ -11,9 +11,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 /**
  *
@@ -35,8 +38,14 @@ public class TicketViewController {
 
     @FXML
     void backButton(ActionEvent event) {
+       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        if (previousScene != null) {
+            stage.setScene(previousScene);
+        }
 
     }
+    Scene previousScene;
 
     @FXML
     void nextView(ActionEvent event) {
