@@ -3,6 +3,8 @@
   <persistence-unit name="NicolFariasFXMLPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>model.Accountmodel</class>
+    <class>model.Trainmodel</class>
+    <class>model.Busmodel</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/gp12_db;create=true"/>
       <property name="javax.persistence.jdbc.user" value="APP"/>

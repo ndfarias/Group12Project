@@ -11,14 +11,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #17109a;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetailModelController">
    <children>
-      <Button fx:id="backButton" layoutX="22.0" layoutY="24.0" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: white;" text="Back">
+      <Button fx:id="backButton" layoutX="33.0" layoutY="34.0" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: white;" text="Back">
          <font>
             <Font name="Georgia Bold" size="15.0" />
          </font>
          <effect>
             <InnerShadow />
          </effect></Button>
-      <Label layoutX="156.0" layoutY="11.0" prefHeight="56.0" prefWidth="288.0" text="Dashboard" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="157.0" layoutY="20.0" prefHeight="56.0" prefWidth="288.0" text="Dashboard" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Showcard Gothic" size="48.0" />
          </font>
@@ -26,7 +26,7 @@
             <DropShadow height="10.0" radius="4.5" width="10.0" />
          </effect>
       </Label>
-      <Button fx:id="transportButton" layoutX="91.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: white;" text="Available Transport">
+      <Button fx:id="transportButton" layoutX="91.0" layoutY="154.0" mnemonicParsing="false" onAction="#transportView" prefHeight="39.0" prefWidth="192.0" style="-fx-background-color: white;" text="Available Transport">
          <font>
             <Font name="Georgia Bold" size="15.0" />
          </font>
@@ -34,7 +34,7 @@
             <InnerShadow />
          </effect>
       </Button>
-      <Button fx:id="ticketButton" layoutX="372.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: white;" text="Tickets">
+      <Button fx:id="ticketButton" layoutX="367.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: white;" text="Tickets">
          <font>
             <Font name="Georgia Bold" size="15.0" />
          </font>
@@ -52,6 +52,11 @@
             <Image url="@../../../../../../Pictures/Saved%20Pictures/bus%20icon.jpg" />
          </image>
       </ImageView>
+      <Label fx:id="labelName" layoutX="239.0" layoutY="101.0" text="Welcome" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Georgia" size="15.0" />
+         </font>
+      </Label>
    </children>
    <effect>
       <InnerShadow height="76.98" radius="41.290000000000006" width="90.18" />

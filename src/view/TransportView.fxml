@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #17109a;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #17109a;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TransportController">
    <children>
       <Button fx:id="backButton" layoutX="22.0" layoutY="24.0" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: white;" text="Back">
          <font>
@@ -17,15 +17,15 @@
          <effect>
             <InnerShadow />
          </effect></Button>
-      <Label layoutX="172.0" layoutY="25.0" prefHeight="56.0" prefWidth="260.0" text="Transport" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="160.0" layoutY="25.0" prefHeight="56.0" prefWidth="280.0" text="Transport" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Georgia Bold" size="48.0" />
+            <Font name="Showcard Gothic" size="48.0" />
          </font>
          <effect>
             <DropShadow height="10.0" radius="4.5" width="10.0" />
          </effect>
       </Label>
-      <Button fx:id="busButton" layoutX="32.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="155.0" style="-fx-background-color: white;" text="Available Buses">
+      <Button fx:id="busButton" layoutX="32.0" layoutY="154.0" mnemonicParsing="false" onAction="#busView" prefHeight="39.0" prefWidth="155.0" style="-fx-background-color: white;" text="Available Buses">
          <font>
             <Font name="Georgia Bold" size="15.0" />
          </font>
@@ -33,7 +33,7 @@
             <InnerShadow />
          </effect>
       </Button>
-      <Button fx:id="trainButton" layoutX="421.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="146.0" style="-fx-background-color: white;" text="Available Trains">
+      <Button fx:id="trainButton" layoutX="421.0" layoutY="154.0" mnemonicParsing="false" onAction="#trainView" prefHeight="39.0" prefWidth="146.0" style="-fx-background-color: white;" text="Available Trains">
          <font>
             <Font name="Georgia Bold" size="15.0" />
          </font>
@@ -43,7 +43,7 @@
       </Button>
       <ImageView fx:id="trainImage" fitHeight="150.0" fitWidth="146.0" layoutX="422.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="busImage" fitHeight="150.0" fitWidth="155.0" layoutX="32.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="transportButton1" layoutX="223.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="155.0" style="-fx-background-color: white;" text="View Routes">
+      <Button fx:id="routesButton" layoutX="223.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="155.0" style="-fx-background-color: white;" text="View Routes">
          <font>
             <Font name="Georgia Bold" size="15.0" />
          </font>

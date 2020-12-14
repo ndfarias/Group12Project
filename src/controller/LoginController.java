@@ -429,7 +429,7 @@ public class LoginController implements Initializable {
 
     }
     
-    //show details button action
+    /*//show details button action
     @FXML
     void showDetailAction(ActionEvent event) throws IOException {
         System.out.println("Clicked");
@@ -448,7 +448,7 @@ public class LoginController implements Initializable {
         stage.setScene(tableView);
         stage.show();
 
-    }
+    }*/
 
     // show details in place button action
     @FXML

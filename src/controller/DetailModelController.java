@@ -3,20 +3,27 @@
 
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import model.Accountmodel;
 
 public class DetailModelController {
+    
 
     @FXML 
     private ResourceBundle resources;
@@ -38,6 +45,30 @@ public class DetailModelController {
 
     @FXML
     private ImageView transportImage;
+    
+    @FXML
+    private Label labelName;
+    
+    @FXML
+    void transportView(ActionEvent event) throws IOException {
+        System.out.println("Clicked.");
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TransportView.fxml"));
+
+        Parent detailModelView = loader.load();
+        Scene transportView = new Scene(detailModelView);
+        TransportController detailControlled = loader.getController();
+        
+        detailControlled.initData();
+
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        detailControlled.setPreviousScene(currentScene);
+        
+        Stage stage = (Stage) currentScene.getWindow();
+
+        stage.setScene(transportView);
+        stage.show();
+    }
 
     // this back button action serves to go back to the previous scene 
     @FXML
@@ -60,20 +91,22 @@ public class DetailModelController {
     }
 
     public void initData(Accountmodel model) {
-        String member;
+        /*String member;
         
         if (model.getIsmember() == true) {
             member = "Yes";
         }else {
             member = "No";
             
-        }
+        }*/
+        String name = model.getAccountname();
+        String firstName = name.substring(0, name.indexOf(" "));
         
-        /**selectedModel = model;
-        labelID.setText(model.getAccountid().toString());
-        labelName.setText(model.getAccountname());
-        labelEmail.setText(model.getAccountemail());
-        labelMember.setText(member);*/
+        //selectedModel = model;
+        //labelID.setText(model.getAccountid().toString());
+        labelName.setText("Welcome " + firstName + "!");
+        //labelEmail.setText(model.getAccountemail());
+        //labelMember.setText(member);
 
         try {
             String busImageName = "/resource/images/bus icon.png";
@@ -92,10 +125,11 @@ public class DetailModelController {
     @FXML
     void initialize() {
         assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert transportButton!= null : "fx:id=\"labelID\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert ticketButton != null : "fx:id=\"labelName\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert ticketImage != null : "fx:id=\"labelEmail\" was not injected: check your FXML file 'DashboardView.fxml'.";
-        assert transportImage != null : "fx:id=\"labelMember\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert transportButton!= null : "fx:id=\"transportButton\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert ticketButton != null : "fx:id=\"ticketButton\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert ticketImage != null : "fx:id=\"ticketImage\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert transportImage != null : "fx:id=\"transportImage\" was not injected: check your FXML file 'DashboardView.fxml'.";
+        assert labelName != null : "fx:id=\"labelName\" was not injected: check your FXML file 'DashboardView.fxml'.";
         
         backButton.setDisable(true);
     }
