@@ -5,6 +5,8 @@
  */
 package model;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Table;
 
 /**
@@ -13,10 +15,17 @@ import javax.persistence.Table;
  */
 @Table(name = "TICKET")
 public class TicketModel {
-    
+    @Basic(optional = false)
+    @Column(name = "ID")
     private int ticketID;
+    @Basic(optional = false)
+    @Column(name = "PRICE")
     private double ticketPrice;
+    @Basic(optional = false)
+    @Column(name = "REFERENCECODE")
     int referenceCode;
+    @Basic(optional = false)
+    @Column(name = "NAME")
     String ticketName;
 
     public TicketModel(int ticketID, double ticketPrice, int referenceCode, String ticketName) {
