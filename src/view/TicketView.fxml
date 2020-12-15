@@ -4,25 +4,41 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="600.0" style="-fx-background-color: #17109a;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TicketViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="600.0" style="-fx-background-color: #d6d6d6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TicketViewController">
    <children>
-      <TableView fx:id="TicketModel" layoutX="30.0" layoutY="124.0" prefHeight="244.0" prefWidth="412.0">
+      <TableView fx:id="TicketModel" layoutX="30.0" layoutY="110.0" prefHeight="258.0" prefWidth="423.0">
         <columns>
           <TableColumn prefWidth="95.0" text="Ticket Name" />
           <TableColumn prefWidth="105.0" text="Ticket ID" />
-            <TableColumn prefWidth="117.0" text="ReferenceCode" />
-            <TableColumn prefWidth="93.0" text="Price" />
+            <TableColumn prefWidth="124.0" text="Reference Code" />
+            <TableColumn prefWidth="98.0" text="Price" />
         </columns>
       </TableView>
-      <Label fx:id="ticketLabel" layoutX="94.0" layoutY="46.0" prefHeight="31.0" prefWidth="197.0" text="Ticket List" textFill="WHITE">
+      <Label fx:id="ticketLabel" layoutX="194.0" layoutY="21.0" prefHeight="43.0" prefWidth="212.0" text="Ticket List" textFill="#17109a">
          <font>
-            <Font size="36.0" />
+            <Font name="Showcard Gothic" size="36.0" />
          </font>
       </Label>
-      <Button fx:id="purchaseButton" layoutX="465.0" layoutY="332.0" mnemonicParsing="false" onAction="#purchaseButton" prefHeight="36.0" prefWidth="64.0" text="Purchase" />
-      <Button fx:id="backButton" layoutX="30.0" layoutY="21.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
+      <Button fx:id="purchaseButton" layoutX="471.0" layoutY="332.0" mnemonicParsing="false" onAction="#purchaseButton" prefHeight="36.0" prefWidth="98.0" text="Purchase">
+         <font>
+            <Font name="Georgia Bold" size="15.0" />
+         </font>
+         <effect>
+            <InnerShadow height="15.0" radius="7.0" width="15.0" />
+         </effect></Button>
+      <Button fx:id="backButton" layoutX="30.0" layoutY="27.0" mnemonicParsing="false" onAction="#backButton" text="Back">
+         <font>
+            <Font name="Georgia Bold" size="15.0" />
+         </font>
+         <effect>
+            <InnerShadow height="15.0" radius="7.0" width="15.0" />
+         </effect></Button>
    </children>
+   <effect>
+      <InnerShadow height="52.1" radius="34.8775" width="89.41" />
+   </effect>
 </AnchorPane>
