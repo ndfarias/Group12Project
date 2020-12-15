@@ -50,6 +50,26 @@ public class DetailModelController {
     private Label labelName;
     
     @FXML
+    void ticketView(ActionEvent event) throws IOException {
+        System.out.println("Clicked");
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TicketView.fxml"));
+        
+        Parent detailModelView = loader.load();
+        Scene ticketView = new Scene(detailModelView);
+        TicketViewController detailControlled = loader.getController();
+        
+
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        detailControlled.setPreviousScene(currentScene);
+        
+        Stage stage = (Stage) currentScene.getWindow();
+
+        stage.setScene(ticketView);
+        stage.show();
+    }
+    
+    @FXML
     void transportView(ActionEvent event) throws IOException {
         System.out.println("Clicked.");
         

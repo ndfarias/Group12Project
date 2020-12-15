@@ -34,7 +34,7 @@
             <InnerShadow />
          </effect>
       </Button>
-      <Button fx:id="ticketButton" layoutX="367.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: white;" text="Tickets">
+      <Button fx:id="ticketButton" layoutX="367.0" layoutY="154.0" mnemonicParsing="false" onAction="#ticketView" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: white;" text="Tickets">
          <font>
             <Font name="Georgia Bold" size="15.0" />
          </font>
