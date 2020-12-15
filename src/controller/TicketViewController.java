@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import model.TicketModel;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 
 /**
@@ -71,11 +73,24 @@ public class TicketViewController {
     Scene previousScene;
 
     @FXML
-    void purchaseButton(ActionEvent event) {
-        
-        
+    void purchaseButton(ActionEvent event) throws IOException {
+        System.out.println("Clicked");
+            
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TicketPurchasedView.fxml"));
 
-    }
+        Parent TicketView = loader.load();
+        Scene TicketPurchasedView = new Scene(TicketView);
+        TicketPurchasedController detailControlled = loader.getController();
+
+
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        detailControlled.setPreviousScene(currentScene);
+        
+        Stage stage = (Stage) currentScene.getWindow();
+
+        stage.setScene(TicketPurchasedView);
+        stage.show();
+        }
     
     public void setPreviousScene(Scene scene) {
     previousScene = scene;
