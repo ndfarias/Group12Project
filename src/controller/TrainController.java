@@ -273,6 +273,7 @@ public class TrainController implements Initializable {
         q.setParameter("departuredate", d);
         q.setParameter("trainorigin", o);
         q.setParameter("traindestination", e);
+        
 
         List<Trainmodel> trains = q.getResultList();
 

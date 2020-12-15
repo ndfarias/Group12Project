@@ -43,7 +43,7 @@
       </Button>
       <ImageView fx:id="trainImage" fitHeight="150.0" fitWidth="146.0" layoutX="422.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="busImage" fitHeight="150.0" fitWidth="155.0" layoutX="32.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="routesButton" layoutX="223.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="155.0" style="-fx-background-color: white;" text="View Routes">
+      <Button fx:id="routesButton" layoutX="223.0" layoutY="154.0" mnemonicParsing="false" onAction="#routeView" prefHeight="39.0" prefWidth="155.0" style="-fx-background-color: white;" text="View Routes">
          <font>
             <Font name="Georgia Bold" size="15.0" />
          </font>

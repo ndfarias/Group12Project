@@ -81,6 +81,27 @@ public class TransportController {
         stage.setScene(trainView);
         stage.show();
     }
+    
+    @FXML 
+    void routeView(ActionEvent event) throws IOException {
+        System.out.println("Clicked.");
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RouteView.fxml"));
+
+        Parent detailModelView = loader.load();
+        Scene trainView = new Scene(detailModelView);
+        RouteController detailControlled = loader.getController();
+        
+        detailControlled.initData();
+
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        detailControlled.setPreviousScene(currentScene);
+        
+        Stage stage = (Stage) currentScene.getWindow();
+
+        stage.setScene(trainView);
+        stage.show();
+    }
 
     @FXML
     void backButton(ActionEvent event) {
