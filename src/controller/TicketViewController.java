@@ -6,7 +6,9 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,15 +25,42 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import model.TicketModel;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import model.TicketModel;
 
 /**
  *
  * @author Malcolm Gemmell
  */
-public class TicketViewController {
+public class TicketViewController implements Initializable {
+    
+    EntityManager manager;
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // loading data from database
+        manager = (EntityManager) Persistence.createEntityManagerFactory("NicolFariasFXMLPU").createEntityManager();
+        
+        ticketID.setCellValueFactory(new PropertyValueFactory<>("ticketID"));
+        ticketPrice.setCellValueFactory(new PropertyValueFactory<>("ticketPrice"));
+        ticketName.setCellValueFactory(new PropertyValueFactory<>("ticketName"));
+        
+
+       // ticketModel.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    }
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+    
     @FXML
     private TableView<TicketModel> TicketModel;
 
@@ -47,10 +76,10 @@ public class TicketViewController {
     private ObservableList<TicketModel> ticketData;
     
      @FXML
-    private TableView<TicketModel> accountModel;
+    private TableView<TicketModel> ticketModel;
 
     @FXML
-    private TableColumn<TicketModel, Integer> ticketId;
+    private TableColumn<TicketModel, Integer> ticketID;
 
     @FXML
     private TableColumn<TicketModel, String> ticketName;
@@ -60,6 +89,13 @@ public class TicketViewController {
     
     @FXML
     private TableColumn<TicketModel, Double> ticketPrice;
+    
+    public List<TicketModel> readAll() {
+        Query query = manager.createNamedQuery("TicketModel.findAll");
+        List<TicketModel> tickets = query.getResultList();
+
+        return tickets;
+    }
 
     @FXML
     void backButton(ActionEvent event) {
@@ -106,6 +142,12 @@ public class TicketViewController {
         
         TicketModel.setItems(ticketData);
         TicketModel.refresh();
+    }
+    
+    public void initData() {
+        
+        List<TicketModel> tickets = readAll();
+        setTableData(tickets);
     }
 
 }

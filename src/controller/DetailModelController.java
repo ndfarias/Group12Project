@@ -59,6 +59,7 @@ public class DetailModelController {
         Scene ticketView = new Scene(detailModelView);
         TicketViewController detailControlled = loader.getController();
         
+        detailControlled.initData();
 
         Scene currentScene = ((Node) event.getSource()).getScene();
         detailControlled.setPreviousScene(currentScene);

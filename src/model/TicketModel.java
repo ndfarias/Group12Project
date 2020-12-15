@@ -5,33 +5,48 @@
  */
 package model;
 
+import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Malcolm Gemmell
  */
+@Entity
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "TicketModel.findAll", query = "SELECT t FROM TicketModel t")
+    })
 @Table(name = "TICKET")
-public class TicketModel {
+
+public class TicketModel implements Serializable {
+
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "PRICE")
+    private Double ticketPrice;
+    
+    private static final long serialVersionUID = 1L;
+    @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private int ticketID;
     @Basic(optional = false)
-    @Column(name = "PRICE")
-    private double ticketPrice;
-    @Basic(optional = false)
-    @Column(name = "REFERENCECODE")
-    int referenceCode;
-    @Basic(optional = false)
     @Column(name = "NAME")
     String ticketName;
 
-    public TicketModel(int ticketID, double ticketPrice, int referenceCode, String ticketName) {
+    public TicketModel() {
+    }
+
+    public TicketModel(int ticketID, double ticketPrice, String ticketName) {
         this.ticketID = ticketID;
         this.ticketPrice = ticketPrice;
-        this.referenceCode = referenceCode;
         this.ticketName = ticketName;
     }
 
@@ -51,13 +66,6 @@ public class TicketModel {
         this.ticketPrice = ticketPrice;
     }
 
-    public int getReferenceCode() {
-        return referenceCode;
-    }
-
-    public void setReferenceCode(int referenceCode) {
-        this.referenceCode = referenceCode;
-    }
 
     public String getTicketName() {
         return ticketName;
@@ -65,6 +73,14 @@ public class TicketModel {
 
     public void setTicketName(String ticketName) {
         this.ticketName = ticketName;
+    }
+
+    public Double getPrice() {
+        return ticketPrice;
+    }
+
+    public void setPrice(Double price) {
+        this.ticketPrice = price;
     }
     
 }

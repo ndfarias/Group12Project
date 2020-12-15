@@ -5,6 +5,7 @@
     <class>model.Accountmodel</class>
     <class>model.Trainmodel</class>
     <class>model.Busmodel</class>
+    <class>model.TicketModel</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/gp12_db;create=true"/>
       <property name="javax.persistence.jdbc.user" value="APP"/>
