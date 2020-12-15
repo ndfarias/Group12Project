@@ -48,7 +48,6 @@ public class DetailModelController {
     
     @FXML
     void ticketView(ActionEvent event) throws IOException {
-        System.out.println("Clicked");
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TicketView.fxml"));
         
@@ -69,7 +68,6 @@ public class DetailModelController {
     
     @FXML
     void transportView(ActionEvent event) throws IOException {
-        System.out.println("Clicked.");
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TransportView.fxml"));
 

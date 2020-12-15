@@ -204,7 +204,6 @@ public class BusController implements Initializable {
     //action for search button. searches for a bus based on id
     @FXML
     void searchByID(ActionEvent event) {
-        System.out.println("Clicked");
 
         int busID = Integer.parseInt(idField.getText());
 
@@ -225,7 +224,6 @@ public class BusController implements Initializable {
     //action for advanced search button. searches for a bus based on departure date, origin and destination
     @FXML
     void searchBuses(ActionEvent event) throws IOException, Exception {
-        System.out.println("Clicked");
         
         String dateString = dateField.getText();
        
@@ -239,8 +237,8 @@ public class BusController implements Initializable {
         if (buses == null || buses.isEmpty()) {
 
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Wrong Username or Password");
+            alert.setTitle("Information");
+            alert.setHeaderText("Error");
             alert.setContentText("No Bus Found.");
             alert.showAndWait();
         } else {
@@ -252,8 +250,6 @@ public class BusController implements Initializable {
     // show details in place button action
     @FXML
     void selectBusDetails(ActionEvent event) throws IOException {
-        System.out.println("Clicked");
-
     
         Busmodel selectBus = busTable.getSelectionModel().getSelectedItem();
 

@@ -123,7 +123,6 @@ public class LoginController implements Initializable {
     //action for advanced search button. searches for account based on email and password
     @FXML
     void advancedAccount(ActionEvent event) throws IOException {
-        System.out.println("Clicked");
        
         String email = emailField.getText();
         String password = passwordField.getText();
@@ -162,7 +161,6 @@ public class LoginController implements Initializable {
     
     @FXML
     void signUpScreen(ActionEvent event) throws IOException {
-        System.out.println("Clicked");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SignUpView.fxml"));
 

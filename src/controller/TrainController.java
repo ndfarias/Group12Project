@@ -200,7 +200,6 @@ public class TrainController implements Initializable {
     //action for search button. searches for train based on ID
     @FXML
     void searchByID(ActionEvent event) {
-        System.out.println("Clicked");
 
         int trainID = Integer.parseInt(idField.getText());
 
@@ -211,7 +210,7 @@ public class TrainController implements Initializable {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information");
             alert.setHeaderText("Error");
-            alert.setContentText("No train Found.");
+            alert.setContentText("No Train Found.");
             alert.showAndWait();
         } else {
             setTableData(trains);
@@ -221,7 +220,6 @@ public class TrainController implements Initializable {
     //action for advanced search button. searches for train based on departure date, origin and destination
     @FXML
     void searchTrains(ActionEvent event) throws IOException, Exception {
-        System.out.println("Clicked");
         
         String dateString = dateField.getText();
        
@@ -235,9 +233,9 @@ public class TrainController implements Initializable {
         if (trains == null || trains.isEmpty()) {
 
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Wrong Username or Password");
-            alert.setContentText("No train Found.");
+            alert.setTitle("Information");
+            alert.setHeaderText("Error");
+            alert.setContentText("No Train Found.");
             alert.showAndWait();
         } else {
             setTableData(trains);
@@ -249,9 +247,7 @@ public class TrainController implements Initializable {
     // show details in place button action
     @FXML
     void selectTrainDetails(ActionEvent event) throws IOException {
-        System.out.println("Clicked");
 
-    
         Trainmodel selectTrain = trainTable.getSelectionModel().getSelectedItem();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TicketView.fxml"));

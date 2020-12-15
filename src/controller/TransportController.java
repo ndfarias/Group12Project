@@ -45,7 +45,6 @@ public class TransportController {
     
     @FXML
     void busView(ActionEvent event) throws IOException {
-        System.out.println("Clicked.");
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BusView.fxml"));
 
@@ -64,7 +63,6 @@ public class TransportController {
     
     @FXML
     void trainView(ActionEvent event) throws IOException {
-        System.out.println("Clicked.");
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TrainView.fxml"));
 
@@ -83,7 +81,6 @@ public class TransportController {
     
     @FXML 
     void routeView(ActionEvent event) throws IOException {
-        System.out.println("Clicked.");
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RouteView.fxml"));
 

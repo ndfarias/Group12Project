@@ -28,6 +28,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import model.TicketModel;
+import model.Trainmodel;
 
 /**
  *
@@ -104,7 +105,6 @@ public class TicketViewController implements Initializable {
 
     @FXML
     void purchaseButton(ActionEvent event) throws IOException {
-        System.out.println("Clicked");
             
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TicketPurchasedView.fxml"));
 
