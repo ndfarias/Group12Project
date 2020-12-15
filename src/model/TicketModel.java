@@ -28,7 +28,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class TicketModel implements Serializable {
 
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "PRICE")
     private Double ticketPrice;
     

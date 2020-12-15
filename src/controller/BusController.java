@@ -7,7 +7,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -23,7 +22,6 @@ import model.Busmodel;
 import java.util.List;
 import java.util.Date;
 import javax.persistence.Query;
-import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -44,7 +42,6 @@ import javafx.scene.control.TableCell;
 public class BusController implements Initializable {
 
     
-    //the following code snippet is from the demo project
     // Database manager
     EntityManager manager;
 
@@ -179,99 +176,8 @@ public class BusController implements Initializable {
 
     private ObservableList<Busmodel> busData;
     
-
-    // The following code has been copied and modified from the demo project
     
-    //action for button to create an account
-    @FXML
-    void createBus(ActionEvent event) {
-        Scanner scn = new Scanner(System.in);
-
-        System.out.println("Enter Bus ID:");
-        int busId = scn.nextInt();
-        scn.nextLine();
-
-        System.out.println("Enter DepartureDate:");
-        String stringDate = scn.nextLine();
-
-        System.out.println("Enter Bus Service:");
-        String busService = scn.nextLine();
-        
-        System.out.println("Enter Bus Origin");
-        String busOrigin = scn.nextLine();
-
-        System.out.println("Enter Bus Destination");
-        String busDestination = scn.nextLine();
-        
-        System.out.println("Enter Departure Time");
-        String stringDepartureTime = scn.nextLine();
-        
-        System.out.println("Enter Arrival Time");
-        String stringArrivalTime = scn.nextLine();
-        
-        System.out.println("Enter Seat Capacity:");
-        int seatCap = scn.nextInt();
-        scn.nextLine();
-        
-        System.out.println("Enter Seats Taken");
-        int seatTaken = scn.nextInt();
-        scn.nextLine();
-        
-        Date arrivalTime = null;
-        
-        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-        Date departureDate = null;
-        
-        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm aa");
-        Date departureTime = null;
-        
-        try {
-            departureDate = format.parse(stringDate);
-            departureTime = timeFormat.parse(stringDepartureTime);
-            arrivalTime = timeFormat.parse(stringArrivalTime);
-            
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        // create account instance
-        Busmodel bus = new Busmodel();
-
-        bus.setBusid(busId);
-        bus.setDeparturedate(departureDate);
-        bus.setBusservice(busService);
-        bus.setBusorigin(busOrigin);
-        bus.setBusdestination(busDestination);
-        bus.setDeparturetime(departureTime);
-        bus.setArrivaltime(arrivalTime);
-        bus.setSeatcapacity(seatCap);
-        bus.setSeatstaken(seatTaken);
-
-        // save this account to the database        
-        create(bus);
-    }
-
-    //CRUD Operations based on demo project and modified for this instance
-    
-    //method to create an account 
-    public void create(Busmodel bus) {
-        try {
-            manager.getTransaction().begin();
-
-            if (bus.getBusid() != null) {
-
-                // create account
-                manager.persist(bus);
-
-                manager.getTransaction().commit();
-
-                System.out.println(bus.toString() + " is created");
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    //this method finds an account based on any characters in the email
+    //this method finds a bus based on date, origin and destination
     public List<Busmodel> readDateOriginDestination(Date d, String o, String e) {
         Query q = manager.createNamedQuery("Busmodel.findByDateOriginDestination");
         
@@ -281,14 +187,10 @@ public class BusController implements Initializable {
 
         List<Busmodel> buses = q.getResultList();
 
-        /*for (Busmodel b : buses) {
-            System.out.println(b.getBusid() + " " + b.getDeparturedate() + " " + b.getBusservice() + " " + b.getBusorigin() + " " + b.getBusdestination() 
-                    + " " + b.getDeparturetime() + " " + b.getArrivaltime() + " " + b.getSeatcapacity() + " " + b.getSeatstaken());
-        }*/
         return buses;
     }
 
-    //this method finds an account based on email
+    //this method finds a bus based on ID
     public List<Busmodel> readByID(int i) {
         Query q = manager.createNamedQuery("Busmodel.findByBusid");
 
@@ -296,14 +198,10 @@ public class BusController implements Initializable {
 
         List<Busmodel> buses = q.getResultList();
         
-        /*for (Busmodel b : buses) {
-            System.out.println(b.getBusid() + " " + b.getDeparturedate() + " " + b.getBusservice() + " " + b.getBusorigin() + " " + b.getBusdestination() 
-                    + " " + b.getDeparturetime() + " " + b.getArrivaltime() + " " + b.getSeatcapacity() + " " + b.getSeatstaken());
-        }*/
         return buses;
     }
 
-    //action for search button. searches for account based on email
+    //action for search button. searches for a bus based on id
     @FXML
     void searchByID(ActionEvent event) {
         System.out.println("Clicked");
@@ -324,7 +222,7 @@ public class BusController implements Initializable {
         }
     }
     
-    //action for advanced search button. searches for account based on any words in the email
+    //action for advanced search button. searches for a bus based on departure date, origin and destination
     @FXML
     void searchBuses(ActionEvent event) throws IOException, Exception {
         System.out.println("Clicked");
@@ -350,27 +248,6 @@ public class BusController implements Initializable {
         }
 
     }
-    
-    //show details button action
-   /* @FXML
-    void showDetailAction(ActionEvent event) throws IOException {
-        System.out.println("Clicked");
-   
-        Busmodel selectBus = busTable.getSelectionModel().getSelectedItem();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardView.fxml"));
-
-        Parent detailModelView = loader.load();
-        Scene tableView = new Scene(detailModelView);
-        DetailModelController detailControlled = loader.getController();
-
-        //detailControlled.initData(selectAccount);
-
-        Stage stage = new Stage();
-        stage.setScene(tableView);
-        stage.show();
-
-    }*/
 
     // show details in place button action
     @FXML
@@ -380,13 +257,13 @@ public class BusController implements Initializable {
     
         Busmodel selectBus = busTable.getSelectionModel().getSelectedItem();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TicketView.fxml"));
 
         Parent dashboardView = loader.load();
         Scene tableView = new Scene(dashboardView);
-        DetailModelController detailControlled = loader.getController();
+        TicketViewController detailControlled = loader.getController();
 
-        //detailControlled.initData(selectBus);
+        detailControlled.initData();
 
         Scene currentScene = ((Node) event.getSource()).getScene();
         detailControlled.setPreviousScene(currentScene);

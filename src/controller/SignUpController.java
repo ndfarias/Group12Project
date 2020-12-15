@@ -22,14 +22,6 @@ public class SignUpController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // loading data from database
         manager = (EntityManager) Persistence.createEntityManagerFactory("NicolFariasFXMLPU").createEntityManager();
-        
-        /*accountid.setCellValueFactory(new PropertyValueFactory<>("accountid"));
-        accountname.setCellValueFactory(new PropertyValueFactory<>("accountname"));
-        accountemail.setCellValueFactory(new PropertyValueFactory<>("accountemail"));
-        ismember.setCellValueFactory(new PropertyValueFactory<>("ismember"));
-        accountpassword.setCellValueFactory(new PropertyValueFactory<>("accountpassword"));
-
-        accountModel.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);*/
     }
 
     @FXML

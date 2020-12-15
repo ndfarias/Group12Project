@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,8 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 import model.Accountmodel;
 
 public class DetailModelController {
@@ -112,22 +109,11 @@ public class DetailModelController {
     }
 
     public void initData(Accountmodel model) {
-        /*String member;
         
-        if (model.getIsmember() == true) {
-            member = "Yes";
-        }else {
-            member = "No";
-            
-        }*/
         String name = model.getAccountname();
         String firstName = name.substring(0, name.indexOf(" "));
         
-        //selectedModel = model;
-        //labelID.setText(model.getAccountid().toString());
         labelName.setText("Welcome " + firstName + "!");
-        //labelEmail.setText(model.getAccountemail());
-        //labelMember.setText(member);
 
         try {
             String busImageName = "/resource/images/bus icon.png";

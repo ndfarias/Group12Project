@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,7 +17,6 @@ import model.Trainmodel;
 import java.util.List;
 import java.util.Date;
 import javax.persistence.Query;
-import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -39,7 +37,6 @@ import javafx.scene.control.TableCell;
 public class TrainController implements Initializable {
 
     
-    //the following code snippet is from the demo project
     // Database manager
     EntityManager manager;
 
@@ -175,98 +172,7 @@ public class TrainController implements Initializable {
     private ObservableList<Trainmodel> trainData;
     
 
-    // The following code has been copied and modified from the demo project
-    
-    //action for button to create an account
-    @FXML
-    void createTrain(ActionEvent event) {
-        Scanner scn = new Scanner(System.in);
-
-        System.out.println("Enter train ID:");
-        int trainId = scn.nextInt();
-        scn.nextLine();
-
-        System.out.println("Enter DepartureDate:");
-        String stringDate = scn.nextLine();
-
-        System.out.println("Enter train Service:");
-        String trainService = scn.nextLine();
-        
-        System.out.println("Enter train Origin");
-        String trainOrigin = scn.nextLine();
-
-        System.out.println("Enter train Destination");
-        String trainDestination = scn.nextLine();
-        
-        System.out.println("Enter Departure Time");
-        String stringDepartureTime = scn.nextLine();
-        
-        System.out.println("Enter Arrival Time");
-        String stringArrivalTime = scn.nextLine();
-        
-        System.out.println("Enter Seat Capacity:");
-        int seatCap = scn.nextInt();
-        scn.nextLine();
-        
-        System.out.println("Enter Seats Taken");
-        int seatTaken = scn.nextInt();
-        scn.nextLine();
-        
-        Date arrivalTime = null;
-        
-        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-        Date departureDate = null;
-        
-        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm aa");
-        Date departureTime = null;
-        
-        try {
-            departureDate = format.parse(stringDate);
-            departureTime = timeFormat.parse(stringDepartureTime);
-            arrivalTime = timeFormat.parse(stringArrivalTime);
-            
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        // create account instance
-        Trainmodel train = new Trainmodel();
-
-        train.setTrainid(trainId);
-        train.setDeparturedate(departureDate);
-        train.setTrainservice(trainService);
-        train.setTrainorigin(trainOrigin);
-        train.setTraindestination(trainDestination);
-        train.setDeparturetime(departureTime);
-        train.setArrivaltime(arrivalTime);
-        train.setSeatcapacity(seatCap);
-        train.setSeatstaken(seatTaken);
-
-        // save this account to the database        
-        create(train);
-    }
-
-    //CRUD Operations based on demo project and modified for this instance
-    
-    //method to create an account 
-    public void create(Trainmodel train) {
-        try {
-            manager.getTransaction().begin();
-
-            if (train.getTrainid() != null) {
-
-                // create account
-                manager.persist(train);
-
-                manager.getTransaction().commit();
-
-                System.out.println(train.toString() + " is created");
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    //this method finds an account based on any characters in the email
+    //this method finds a train based on date, origin, and destination
     public List<Trainmodel> readDateOriginDestination(Date d, String o, String e) {
         Query q = manager.createNamedQuery("Trainmodel.findByDateOriginDestination");
         
@@ -277,14 +183,10 @@ public class TrainController implements Initializable {
 
         List<Trainmodel> trains = q.getResultList();
 
-        /*for (trainmodel b : traines) {
-            System.out.println(b.gettrainid() + " " + b.getDeparturedate() + " " + b.gettrainservice() + " " + b.gettrainorigin() + " " + b.gettraindestination() 
-                    + " " + b.getDeparturetime() + " " + b.getArrivaltime() + " " + b.getSeatcapacity() + " " + b.getSeatstaken());
-        }*/
         return trains;
     }
 
-    //this method finds an account based on email
+    //this method finds a train based on ID
     public List<Trainmodel> readByID(int i) {
         Query q = manager.createNamedQuery("Trainmodel.findByTrainid");
 
@@ -292,14 +194,10 @@ public class TrainController implements Initializable {
 
         List<Trainmodel> trains = q.getResultList();
         
-        /*for (trainmodel b : traines) {
-            System.out.println(b.gettrainid() + " " + b.getDeparturedate() + " " + b.gettrainservice() + " " + b.gettrainorigin() + " " + b.gettraindestination() 
-                    + " " + b.getDeparturetime() + " " + b.getArrivaltime() + " " + b.getSeatcapacity() + " " + b.getSeatstaken());
-        }*/
         return trains;
     }
 
-    //action for search button. searches for account based on email
+    //action for search button. searches for train based on ID
     @FXML
     void searchByID(ActionEvent event) {
         System.out.println("Clicked");
@@ -320,7 +218,7 @@ public class TrainController implements Initializable {
         }
     }
     
-    //action for advanced search button. searches for account based on any words in the email
+    //action for advanced search button. searches for train based on departure date, origin and destination
     @FXML
     void searchTrains(ActionEvent event) throws IOException, Exception {
         System.out.println("Clicked");
@@ -347,26 +245,6 @@ public class TrainController implements Initializable {
 
     }
     
-    //show details button action
-   /* @FXML
-    void showDetailAction(ActionEvent event) throws IOException {
-        System.out.println("Clicked");
-   
-        trainmodel selecttrain = trainTable.getSelectionModel().getSelectedItem();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardView.fxml"));
-
-        Parent detailModelView = loader.load();
-        Scene tableView = new Scene(detailModelView);
-        DetailModelController detailControlled = loader.getController();
-
-        //detailControlled.initData(selectAccount);
-
-        Stage stage = new Stage();
-        stage.setScene(tableView);
-        stage.show();
-
-    }*/
 
     // show details in place button action
     @FXML
@@ -376,13 +254,13 @@ public class TrainController implements Initializable {
     
         Trainmodel selectTrain = trainTable.getSelectionModel().getSelectedItem();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TicketView.fxml"));
 
         Parent dashboardView = loader.load();
         Scene tableView = new Scene(dashboardView);
-        DetailModelController detailControlled = loader.getController();
+        TicketViewController detailControlled = loader.getController();
 
-        //detailControlled.initData(selecttrain);
+        detailControlled.initData();
 
         Scene currentScene = ((Node) event.getSource()).getScene();
         detailControlled.setPreviousScene(currentScene);
