@@ -1,3 +1,3 @@
 This is a early build of our project for the presentation
 
-Next Week: add more functionality, visual updates.
+This week: create report and submit zip with project
