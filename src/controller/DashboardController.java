@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.Accountmodel;
 
-public class DetailModelController {
+public class DashboardController {
     
 
     @FXML 

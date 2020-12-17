@@ -144,7 +144,7 @@ public class LoginController implements Initializable {
 
             Parent detailModelView = loader.load();
             Scene tableView = new Scene(detailModelView);
-            DetailModelController detailControlled = loader.getController();
+            DashboardController detailControlled = loader.getController();
 
             detailControlled.initData(selectAccount);
 
